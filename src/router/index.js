@@ -3,6 +3,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Register from '../pages/Register.vue'
+import Profile from '../pages/Profile.vue'
+import MusicPlaylist from '../pages/MusicPlaylist.vue'
+import Subscription from '../pages/Subscription.vue'
 
 const routes = [
     {
@@ -19,7 +22,22 @@ const routes = [
         path: '/register',
         name: 'Register ',
         component: () => import('../pages/Register.vue')
-    }
+    },
+    {
+        path: '/profile',
+        name: 'Profile ',
+        component: () => import('../pages/Profile.vue')
+    },
+    {
+        path: '/music-playlist',
+        name: 'MusicPlaylist ',
+        component: () => import('../pages/MusicPlaylist.vue')
+    },
+    {
+        path: '/subscription',
+        name: 'Subscription ',
+        component: () => import('../pages/Subscription.vue')
+    },
 ];
 
 const router = createRouter({

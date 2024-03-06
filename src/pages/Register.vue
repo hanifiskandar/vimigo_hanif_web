@@ -1,45 +1,57 @@
 <template>
-    <div class="container">
-        <div class="col-md-6 m-auto">
-            <h1>Register Page</h1>
-            <div class="mt-3" style="color:red">
-              {{ errorMessages }}
-            </div>
-            <div class="mt-3">
-                <form @submit.prevent="submitRegister">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input type="text" v-model="record.name" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Your Name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="email" v-model="record.email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="password" v-model="record.password" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password Confirmation</label>
-                        <input type="password" v-model="record.password_confirmation" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
+  <v-container>
+    <h3 class="text-center">Registration Page</h3>
+    <form @submit.prevent="submitRegister">
+      <v-row justify="center">
+        <v-col cols="12" sm="6" md="4">
+          <v-text-field
+            v-model="record.name"
+            placeholder="Enter your name"
+            outlined
+            label="Name"
+            required
+            prepend-inner-icon="mdi-account"
+          ></v-text-field>
+          <v-text-field
+            v-model="record.email"
+            placeholder="Enter your email"
+            outlined
+            label="Email"
+            required
+            prepend-inner-icon="mdi-email"
+          ></v-text-field>
+          <v-text-field
+            v-model="record.password"
+            placeholder="Enter your password"
+            outlined
+            label="Password"
+            required
+            type="password"
+            prepend-inner-icon="mdi-lock"
+          ></v-text-field>
+          <v-text-field
+            v-model="record.password_confirmation"
+            placeholder="Confirm your password"
+            outlined
+            label="Password Confirmation"
+            required
+            type="password"
+            prepend-inner-icon="mdi-lock"
+          ></v-text-field>
+          <v-btn class="mt-4" block color="primary" @click="submitRegister">
+            Submit
+          </v-btn>
+        </v-col>
+      </v-row>
+    </form>
+  </v-container>
 </template>
 
 
 <script>
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { authStore} from '../stores/authstore';
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { authStore } from "../stores/authstore";
 
 export default {
   created() {
@@ -53,8 +65,8 @@ export default {
         .post("/register", {
           name: this.record.name,
           email: this.record.email,
-          password: this.record.password, 
-          password_confirmation: this.record.password_confirmation, 
+          password: this.record.password,
+          password_confirmation: this.record.password_confirmation,
         })
         .then((response) => {
           this.$router.push("/");
@@ -62,7 +74,7 @@ export default {
         .catch((error) => {
           console.error("Error:", error);
           // if (error.response && error.response.status === 422) {
-            this.errorMessages = error.response.data.message;
+          this.errorMessages = error.response.data.message;
           // }
         });
     },

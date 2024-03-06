@@ -1,13 +1,8 @@
-<style scoped>
-
-
-
-</style>
 
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Task1</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,6 +17,15 @@
                     </li>
                     <li class="nav-item" v-if="!auth.user">
                         <router-link class="nav-link" :class="{ 'active': $route.name === 'Register' }" to="/register" tabindex="-1" aria-disabled="true">Register</router-link>
+                    </li>
+                    <li class="nav-item" v-if="auth.user">
+                        <router-link class="nav-link" :class="{ 'active': $route.name === 'Profile' }" to="/profile" tabindex="-1" aria-disabled="true">Profile</router-link>
+                    </li>
+                    <li class="nav-item" v-if="auth.user">
+                        <router-link class="nav-link" :class="{ 'active': $route.name === 'MusicPlaylist' }" to="/music-playlist" tabindex="-1" aria-disabled="true">Music Playlist</router-link>
+                    </li>
+                    <li class="nav-item" v-if="auth.user">
+                        <router-link class="nav-link" :class="{ 'active': $route.name === 'Subscription' }" to="/subscription" tabindex="-1" aria-disabled="true">Subscription</router-link>
                     </li>
                     <li class="nav-item" v-if="auth.user">
                         <router-link class="nav-link" to="/login" tabindex="-1" aria-disabled="true">

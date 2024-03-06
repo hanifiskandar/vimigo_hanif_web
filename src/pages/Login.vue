@@ -1,36 +1,41 @@
 <template>
-    <div class="container">
-        <div class="col-md-6 m-auto">
-            <h1>Login Page</h1>
-            <div class="mt-3" style="color:red">
-              {{ errorMessages }}
-            </div>
-            <div class="mt-3">
-                <form @submit.prevent="submitLogin">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="email" v-model="record.email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="password" v-model="record.password" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
+  <v-container>
+    <h3 class="text-center pb-2">Login Page</h3>
+    <p class="text-center" style="color:red">{{ errorMessages }}</p>
+    <form @submit.prevent="submitLogin">
+      <v-row justify="center">
+        <v-col cols="12" sm="6" md="4">
+          <v-text-field
+            v-model="record.email"
+            placeholder="Enter your email"
+            outlined
+            label="Email"
+            required
+            prepend-inner-icon="mdi-email"
+          ></v-text-field>
+          <v-text-field
+            v-model="record.password"
+            placeholder="Enter your password"
+            outlined
+            label="Password"
+            required
+            type="password"
+            prepend-inner-icon="mdi-lock"
+          ></v-text-field>
+          <v-btn class="mt-4" block color="primary" @click="submitLogin">
+            Submit
+          </v-btn>
+        </v-col>
+      </v-row>
+    </form>
+  </v-container>
 </template>
 
 
 <script>
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { authStore} from '../stores/authstore';
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { authStore } from "../stores/authstore";
 
 export default {
   created() {
@@ -46,8 +51,8 @@ export default {
           password: this.record.password,
         })
         .then((response) => {
-            console.log("RESTEST: ",response);
-            this.$router.push("/");
+          console.log("RESTEST: ", response);
+          this.$router.push("/");
 
           // if(response.status === 204){
           //   this.$router.push("/");
@@ -58,10 +63,10 @@ export default {
           // console.log('boomsdsd');
         })
         .catch((error) => {
-          console.log('boom');
+          console.log("boom");
           console.error("Error:", error);
           // if (error.response && error.response.status === 422) {
-            this.errorMessages = error.response.data.message;
+          this.errorMessages = error.response.data.message;
           // }
         });
     },
